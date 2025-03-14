@@ -1,4 +1,4 @@
-# Banco NotBank
+# HealthSafe
 RESTful API of the HealthSafe application, containing CRUD functionalities for doctors and patients, as well as appointment scheduling.
 
 ## Diagrama de Classes
