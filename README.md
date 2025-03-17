@@ -1,6 +1,8 @@
 # HealthSafe
 RESTful API of the HealthSafe application, containing CRUD functionalities for doctors and patients, as well as appointment scheduling.
 
+This API is online (by Railway) for you to try it out on the link: https://healthsafe-api-prod.up.railway.app/swagger-ui/index.html#/
+
 ## Diagrama de Classes
 
 ``` mermaid
