@@ -6,99 +6,59 @@ This API is online (by Railway) for you to try it out on the link: https://healt
 ## Diagrama de Classes
 
 ``` mermaid
+
 classDiagram
-    class Address {
-        -String street
-        -String number
-        -String city
-        -String state
-        -String zipCode
-        +Address(AddressDto dto)
-        +update(AddressDto dto)
-    }
 
     class Patient {
-        -Long id
-        -String name
-        -String email
-        -String cpf
-        -LocalDate birthDate
-        -String phone
-        -Address address
+        -id: Long
+        -name: String
+        -email: String
+        -cpf: String
+        -birthDate: LocalDate
+        -phone: String
+        -address: Address
         +Patient(PatientCreateDto dto)
         +update(PatientUpdateDto dto)
     }
 
     class Doctor {
-        -Long id
-        -String name
-        -String email
-        -String crm
-        -LocalDate birthDate
-        -String phone
-        -Speciality specialty
-        -Address address
+        -id: Long
+        -name: String
+        -email: String
+        -crm: String
+        -birthDate: LocalDate
+        -phone: String
+        -specialty: Speciality
+        -address: Address
         +Doctor(DoctorCreateDto dto)
         +update(DoctorUpdateDto dto)
     }
 
+    class Address {
+        -street: String
+        -number: String
+        -city: String
+        -state: String
+        -zipCode: String
+        +Address(AddressDto dto)
+        +update(AddressDto dto)
+    }
+
     class Appointment {
-        -Long id
-        -Doctor doctor
-        -Patient patient
-        -LocalDateTime date
+        -id: Long
+        -doctor: Doctor
+        -patient: Patient
+        -date: LocalDateTime
         +Appointment(Long id, Doctor doctor, Patient patient, LocalDateTime date)
         +reschedule(AppointmentUpdateDto dto)
     }
 
-    class PatientController {
-        +create(PatientCreateDto dto)
-        +findAll()
-        +findById(Long id)
-        +update(PatientUpdateDto dto)
-    }
+    %% Relationships
+    Doctor "1" -->  "n" Appointment
+    Patient "1" -->  "n" Appointment
+    Address --o Patient : embedded in
+    Address --o Doctor : embedded in
 
-    class DoctorController {
-        +create(DoctorCreateDto dto)
-        +findAll()
-        +findById(Long id)
-        +update(DoctorUpdateDto dto)
-    }
-
-    class AppointmentController {
-        +create(AppointmentCreateDto dto)
-        +findById(Long id)
-        +reschedule(AppointmentUpdateDto dto)
-    }
-
-    class PatientService {
-        +create(PatientCreateDto dto)
-        +findById(Long id)
-        +findAll()
-    }
-
-    class DoctorService {
-        +create(DoctorCreateDto dto)
-        +findById(Long id)
-        +findAll()
-    }
-
-    class AppointmentService {
-        +create(AppointmentCreateDto dto)
-        +findById(Long id)
-        +findAll()
-    }
-
-    Address <-- Patient
-    Address <-- Doctor
-    Doctor <-- Appointment
-    Patient <-- Appointment
-    PatientController --> PatientService
-    DoctorController --> DoctorService
-    AppointmentController --> AppointmentService
-    PatientService --> Patient
-    DoctorService --> Doctor
-    AppointmentService --> Appointment
-    AppointmentService --> Doctor
-    AppointmentService --> Patient
 ```
+
+
